@@ -1,0 +1,89 @@
+body {
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.table th {
+    text-align: center;
+}
+
+.contents {
+    min-height: 425px;
+}
+
+.center {
+    text-align: center;
+}
+
+.large-text {
+    font-size: 40px;
+}
+
+.quiz-info-box {
+    background-color: #D9EDF7;
+    border-color: #BCE8F1;
+    border-radius: 4px 4px 4px 4px;
+    padding: 8px 35px 8px 14px;
+}
+
+
+.mt1 {
+    margin-top: 1em;
+}
+.mt2 {
+    margin-top: 2em;
+}
+.mt3 {
+    margin-top: 3em;
+}
+.mt4 {
+    margin-top: 4em;
+}
+.mt5 {
+    margin-top: 5em;
+}
+
+.mb1 {
+    margin-bottom: 1em;
+}
+.mb2 {
+    margin-bottom: 2em;
+}
+.mb3 {
+    margin-bottom: 3em;
+}
+.mb4 {
+    margin-bottom: 4em;
+}
+.mb5 {
+    margin-bottom: 5em;
+}
+
+ul.quiz-list {
+    overflow: hidden;
+    list-style: none outside none;
+}
+
+ul.quiz-list li {
+    position: relative;
+}
+
+ul.quiz-list li>div {
+    position: relative;
+    width: 100%;
+    border-bottom: 1px dashed #0059D0;
+    padding: 8px 0 8px 6px;
+
+    -o-transition: background-color 0.7s ease-out;
+    -ms-transition: background-color 0.7s ease-out;
+    -webkit-transition: background-color 0.7s ease-out;
+    -moz-transition: background-color 0.7s ease-out;
+    -moz-transition: background-color 0.7s ease-out;
+    transition: background-color 0.7s ease-out;
+}
+
+ul.quiz-list li>div.hover {
+    background-color: #bad9e8;
+}
