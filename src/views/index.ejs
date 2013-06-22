@@ -60,7 +60,7 @@
     </script>
 
     <script type="text/template" id="template-answer-summary">
-    <!-- template-answer-summary { { =(}}-->
+    <!-- template-answer-summary -->
     <h3>Answer Summary</h3>
 
         <div class="row-fluid">
@@ -82,9 +82,8 @@
         {{
             var index = 0;
             questions.forEach(function(question) {
-                console.log(answers.get(question.id));
                 var userAnswers=answers.get(question.id);
-                var ans=(userAnswers.length>0?userAnswers[0]: null);
+                var ans=(userAnswers && userAnswers.length>0?userAnswers[0]: null);
                 var ansText = '';
                 if (ans) {
                     ansText = question.get('choices').get(ans).get('text');

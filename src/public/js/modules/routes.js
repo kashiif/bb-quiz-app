@@ -56,15 +56,12 @@ define( ["jquery", "backbone", "quizapp", "models"], function($, Backbone, QuizA
         },
 
         showResult: function(){
-
             // find correct answers
             var answerObj = models.correctAnswers.find(function(item) {
                 return item.get('quizId') == QuizApp.currentExam.id;
             });
 
             var correctAnswers = answerObj.get('answers');
-            console.log(correctAnswers);
-
 
             var tempModel = {
                     score: 0,
@@ -72,6 +69,8 @@ define( ["jquery", "backbone", "quizapp", "models"], function($, Backbone, QuizA
                     totalQuestions: QuizApp.currentExam.get('questions').length,
                     totalPoints: 0
                 };
+
+            //console.log(QuizApp.answers);
 
             _.each(correctAnswers, function(value, key) {
                 // key is actually question id
@@ -85,7 +84,7 @@ define( ["jquery", "backbone", "quizapp", "models"], function($, Backbone, QuizA
                 console.log(value);
                 console.log('useranswer: ');
                 console.log(userAnswer);
-                */
+                //*/
 
                 tempModel.totalPoints += value.length;
 

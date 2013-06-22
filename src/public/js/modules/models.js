@@ -80,7 +80,7 @@ define( ["backbone"], function(Backbone) {
     choices.push(new Choice({id:1, text:'Microsoft'}));
     choices.push(new Choice({id:2, text:'	The World Wide Web Consortium'}));
     choices.push(new Choice({id:3, text:'Mozilla'}));
-    q = new Question({text: "Who is making the Web standards?", choices: choices});
+    q = new Question({id:1, text: "Who is making the Web standards?", choices: choices});
     questions.push(q);
 
 
@@ -89,20 +89,20 @@ define( ["backbone"], function(Backbone) {
     choices.push(new Choice({id:2, text:'<h1>'}));
     choices.push(new Choice({id:3, text:'<heading>'}));
     choices.push(new Choice({id:4, text:'<head>'}));
-    q = new Question({text: "Choose the correct HTML tag for the largest heading?", choices: choices});
+    q = new Question({id:2, text: "Choose the correct HTML tag for the largest heading?", choices: choices});
     questions.push(q);
 
     choices = new Backbone.Collection();
     choices.push(new Choice({id:1, text:'<b>'}));
     choices.push(new Choice({id:2, text:'	<bold>'}));
-    q = new Question({text: "Choose the correct HTML tag to make a text bold?", choices: choices});
+    q = new Question({id:3, text: "Choose the correct HTML tag to make a text bold?", choices: choices});
     questions.push(q);
 
     choices = new Backbone.Collection();
     choices.push(new Choice({id:1, text:'<lb />'}));
     choices.push(new Choice({id:2, text:'	<br/>'}));
     choices.push(new Choice({id:3, text:'<linebreak/>'}));
-    q = new Question({text: "What is the correct HTML tag for inserting a line break?", choices: choices});
+    q = new Question({id:4, text: "What is the correct HTML tag for inserting a line break?", choices: choices});
     questions.push(q);
 
 
@@ -110,7 +110,7 @@ define( ["backbone"], function(Backbone) {
     choices.push(new Choice({id:1, text:'	<body background="yellow">'}));
     choices.push(new Choice({id:2, text:'		<background>yellow</background>'}));
     choices.push(new Choice({id:3, text:'	<body style="background-color:yellow">'}));
-    q = new Question({text: "What is the preferred way for adding a background color in HTML?", choices: choices});
+    q = new Question({id:5, text: "What is the preferred way for adding a background color in HTML?", choices: choices});
     questions.push(q);
 
 
@@ -131,7 +131,7 @@ define( ["backbone"], function(Backbone) {
     choices.push(new Choice({id:1, text:'<script>'}));
     choices.push(new Choice({id:2, text:'	</scripting>'}));
     choices.push(new Choice({id:3, text:'<javascript>'}));
-    q = new Question({text: "Inside which HTML element do we put the JavaScript?", choices: choices});
+    q = new Question({id:1, text: "Inside which HTML element do we put the JavaScript?", choices: choices});
     questions.push(q);
 
 
@@ -140,19 +140,19 @@ define( ["backbone"], function(Backbone) {
     choices.push(new Choice({id:2, text:'The <head> section'}));
     choices.push(new Choice({id:3, text:'The <body> section'}));
 
-    q = new Question({text: "Where is the correct place to insert a JavaScript?", choices: choices});
+    q = new Question({id:2, text: "Where is the correct place to insert a JavaScript?", choices: choices});
     questions.push(q);
 
     choices = new Backbone.Collection();
     choices.push(new Choice({id:1, text:'<script type="text/javascript" name="xxx.js">'}));
     choices.push(new Choice({id:2, text:'<script type="text/javascript" src="xxx.js">'}));
-    q = new Question({text: "What is the correct syntax for referring to an external script called \"xxx.js\"?", choices: choices});
+    q = new Question({id:3, text: "What is the correct syntax for referring to an external script called \"xxx.js\"?", choices: choices});
     questions.push(q);
 
     choices = new Backbone.Collection();
     choices.push(new Choice({id:1, text:'True'}));
     choices.push(new Choice({id:2, text:'False'}));
-    q = new Question({text: "The external JavaScript file must contain the <script> tag?", choices: choices});
+    q = new Question({id:4, text: "The external JavaScript file must contain the <script> tag?", choices: choices});
     questions.push(q);
 
 
@@ -160,7 +160,7 @@ define( ["backbone"], function(Backbone) {
     choices.push(new Choice({id:1, text:'function=myFunction()'}));
     choices.push(new Choice({id:2, text:'function:myFunction()'}));
     choices.push(new Choice({id:3, text:'	function myFunction()'}));
-    q = new Question({text: "How do you create a function?", choices: choices});
+    q = new Question({id:5, text: "How do you create a function?", choices: choices});
     questions.push(q);
 
 
@@ -176,6 +176,14 @@ define( ["backbone"], function(Backbone) {
     correctAnswers.push(new Backbone.Model({
             quizId: 1,
             answers: { '1':[3], '2': [2], '3':[4] }
+        }));
+    correctAnswers.push(new Backbone.Model({
+          quizId: 2,
+          answers: { '1':[2], '2': [2], '3':[1], '4': [2], '5':[3] }
+        }));
+    correctAnswers.push(new Backbone.Model({
+          quizId: 3,
+          answers: { '1':[1], '2': [1], '3':[2], '4':[2], '5':[1, 3] }
         }));
 
 

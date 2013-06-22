@@ -1,4 +1,4 @@
-define( ["jquery", "backbone", "quizapp"], function ($, Backbone, QuizApp) {
+define( ["jquery", "backbone", "quizapp"], function ($, Backbone, quizApp) {
 
     _.templateSettings = {
         interpolate : /\{\{=(.+?)\}\}/g,
@@ -50,9 +50,14 @@ define( ["jquery", "backbone", "quizapp"], function ($, Backbone, QuizApp) {
         },
 
         _startExam: function(evt){
-            QuizApp.currentExam = this.model;
-            QuizApp.currentQuestionIndex = 0;
-            QuizApp.answers = new Backbone.Model();
+            quizApp.currentExam = this.model;
+            quizApp.currentQuestionIndex = 0;
+            if (quizApp.answers) {
+              quizApp.answers.clear();
+            }
+            else {
+              quizApp.answers = new Backbone.Model();
+            }
             this._route(evt);
         },
 
@@ -66,7 +71,7 @@ define( ["jquery", "backbone", "quizapp"], function ($, Backbone, QuizApp) {
         className: "question-container",
 
         render: function () {
-            this.$el.append( _.template( tmplQuestion, {question: this.model, index: QuizApp.currentQuestionIndex} ));
+            this.$el.append( _.template( tmplQuestion, {question: this.model, index: quizApp.currentQuestionIndex} ));
             return this;
         },
         events: {
@@ -84,9 +89,9 @@ define( ["jquery", "backbone", "quizapp"], function ($, Backbone, QuizApp) {
                 });
             }
 
-            QuizApp.answers.set(this.model.id, val);
+            quizApp.answers.set(this.model.id, val);
             // update the index so that router loads the next question
-            QuizApp.currentQuestionIndex++;
+            quizApp.currentQuestionIndex++;
             require(['routes'],function(routes){
                 var router = routes.pageRouter;
                 router.navigate('questions/?' + new Date().getTime(), {trigger: true});
@@ -129,7 +134,7 @@ define( ["jquery", "backbone", "quizapp"], function ($, Backbone, QuizApp) {
     var AnswerSummaryView = Backbone.View.extend({
         tagName: "div",
         render: function () {
-            this.$el.append( _.template( tmplAnswerSummary, {questions: QuizApp.currentExam.get('questions'), answers: QuizApp.answers} ));
+            this.$el.append( _.template( tmplAnswerSummary, {questions: quizApp.currentExam.get('questions'), answers: quizApp.answers} ));
             return this;
         },
         events: {
