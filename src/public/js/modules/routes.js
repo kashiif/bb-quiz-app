@@ -36,8 +36,22 @@ define( ["jquery", "backbone", "quizapp", "models"], function($, Backbone, QuizA
         },
 
         takeExam: function(id){
-            var quiz = models.quizes.get(id);
-            $contents.empty().append(new ExamView({model: quiz}).render().el);
+            var quiz = models.quizes.get(id),
+                examView = new ExamView({model: quiz});
+
+            $contents.empty().append(examView.render().el);
+            examView.on('quizapp:exam:start', function(evt){
+                examView.off('quizapp:exam:start');
+                QuizApp.currentExam = examView.model;
+                QuizApp.currentQuestionIndex = 0;
+                if (QuizApp.answers) {
+                  QuizApp.answers.clear();
+                }
+                else {
+                  QuizApp.answers = new Backbone.Model();
+                }
+                this.navigate('questions', {trigger: true});
+              }, this);
         },
 
         showNextQuestion: function() {

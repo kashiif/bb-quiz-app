@@ -14,14 +14,20 @@ define( ["jquery", "backbone", "quizapp"], function ($, Backbone, quizApp) {
     var tmplAnswerSummary = $('#template-answer-summary').html();
     var tmplResult = $('#template-result').html();
 
-    function navigateAnchor(evt) {
+    function navigateAnchor(evt, eventName, view) {
         evt.preventDefault();
 
-        var routeName = $(evt.target).attr('href');
-        require(['routes'],function(routes){
-            var router = routes.pageRouter;
-            router.navigate(routeName, {trigger: true});
-        });
+        if (eventName) {
+          view.trigger(eventName);
+        }
+        else {
+          var routeName = $(evt.target).attr('href');
+
+          require(['routes'],function(routes){
+              var router = routes.pageRouter;
+              router.navigate(routeName, {trigger: true});
+          });
+        }
     }
 
     var QuizView = Backbone.View.extend({
@@ -50,19 +56,11 @@ define( ["jquery", "backbone", "quizapp"], function ($, Backbone, quizApp) {
         },
 
         _startExam: function(evt){
-            quizApp.currentExam = this.model;
-            quizApp.currentQuestionIndex = 0;
-            if (quizApp.answers) {
-              quizApp.answers.clear();
-            }
-            else {
-              quizApp.answers = new Backbone.Model();
-            }
-            this._route(evt);
+            this._route(evt, 'quizapp:exam:start', this);
         },
 
-        _route: function(evt) {
-            navigateAnchor(evt);
+        _route: function(evt, evtName, context) {
+            navigateAnchor(evt, evtName, context);
         }
     });
 
